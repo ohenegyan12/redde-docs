@@ -79,9 +79,11 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [copied, setCopied] = useState(null);
   const scrollContainerRef = useRef(null);
   const searchRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
@@ -126,6 +128,7 @@ function App() {
   const navigateFromSearch = (item) => {
     setActiveTab(item.tab);
     setActivePage(item.page);
+    setIsSearchFocused(false);
     if (item.section) {
       setTimeout(() => {
         const element = document.getElementById(item.section);
@@ -147,6 +150,18 @@ function App() {
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchFocused(true);
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Helper to handle tab switching
@@ -603,6 +618,13 @@ IRestResponse response = client.Execute(request);`
 
   return (
     <div className={`app-container ${theme}-theme`}>
+      <div
+        className={`search-overlay ${isSearchFocused ? 'active' : ''}`}
+        onClick={() => {
+          setIsSearchFocused(false);
+          setIsSearchVisible(false);
+        }}
+      ></div>
       {/* Top Navigation */}
       <nav className="top-nav">
         <div className="nav-content">
@@ -612,20 +634,24 @@ IRestResponse response = client.Execute(request);`
               <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                 <img src={theme === 'dark' ? "/logo.svg" : "/redde-logo-light.svg"} alt="Redde Logo" className="logo" />
               </a>
-              <span className="version">v1</span>
             </div>
 
             {/* Search Bar */}
-            <div className="search-container" ref={searchRef}>
+            <div className={`search-container ${isSearchFocused ? 'is-focused' : ''}`} ref={searchRef}>
               <Search className="search-icon" size={16} />
               <input
+                ref={searchInputRef}
                 type="text"
                 placeholder="Search..."
                 className="search-input"
                 value={searchQuery}
                 onChange={handleSearch}
-                onFocus={() => searchQuery.trim() && setIsSearchVisible(true)}
+                onFocus={() => {
+                  setIsSearchFocused(true);
+                  if (searchQuery.trim()) setIsSearchVisible(true);
+                }}
               />
+              <div className="search-shortcut">⌘K</div>
               {isSearchVisible && searchResults.length > 0 && (
                 <div className="search-results">
                   {searchResults.map((item, index) => (
@@ -868,15 +894,29 @@ IRestResponse response = client.Execute(request);`
             <>
               <div className="content-header">
                 <span className="content-breadcrumb">Introduction</span>
-                <h1 id="what-is-redde" className="content-title">What is Redde?</h1>
-                <p className="content-subtitle">Welcome to Redde!</p>
+                <h1 id="what-is-redde" className="content-title"> Welcome to Redde!</h1>
               </div>
 
-              <img
-                src="/images/banner.webp"
-                alt="Redde Services"
-                style={{ width: '100%', height: 'auto', borderRadius: '8px', margin: '32px 0 48px' }}
-              />
+              <div className="banner-rectangle">
+                <div className="banner-content">
+                  <div className="banner-left">
+                    <h2 className="banner-title">Build Something Brilliant with <span>Redde's</span> API.</h2>
+                    <p className="banner-description">
+                      Welcome to the Redde API, your gateway to seamless, reliable, and scalable payments.
+                      Whether you're building a startup, scaling a platform, or optimizing your checkout flow,
+                      Redde gives you the tools to accept payments effortlessly.
+                    </p>
+                    <button className="banner-btn">Get Started</button>
+                  </div>
+                  <div className="banner-right">
+                    <img
+                      src={theme === 'light' ? "/images/e-light.svg" : "/images/e-dark.svg"}
+                      alt="Redde Logo"
+                      className="banner-logo-img"
+                    />
+                  </div>
+                </div>
+              </div>
 
               <div className="content-section">
                 <h2>Build Something Brilliant with Redde's API</h2>
