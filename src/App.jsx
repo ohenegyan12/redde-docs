@@ -79,11 +79,9 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [copied, setCopied] = useState(null);
   const scrollContainerRef = useRef(null);
   const searchRef = useRef(null);
-  const searchInputRef = useRef(null);
 
   const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
@@ -128,7 +126,6 @@ function App() {
   const navigateFromSearch = (item) => {
     setActiveTab(item.tab);
     setActivePage(item.page);
-    setIsSearchFocused(false);
     if (item.section) {
       setTimeout(() => {
         const element = document.getElementById(item.section);
@@ -150,18 +147,6 @@ function App() {
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsSearchFocused(true);
-        searchInputRef.current?.focus();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Helper to handle tab switching
@@ -618,13 +603,6 @@ IRestResponse response = client.Execute(request);`
 
   return (
     <div className={`app-container ${theme}-theme`}>
-      <div
-        className={`search-overlay ${isSearchFocused ? 'active' : ''}`}
-        onClick={() => {
-          setIsSearchFocused(false);
-          setIsSearchVisible(false);
-        }}
-      ></div>
       {/* Top Navigation */}
       <nav className="top-nav">
         <div className="nav-content">
@@ -637,21 +615,16 @@ IRestResponse response = client.Execute(request);`
             </div>
 
             {/* Search Bar */}
-            <div className={`search-container ${isSearchFocused ? 'is-focused' : ''}`} ref={searchRef}>
+            <div className="search-container" ref={searchRef}>
               <Search className="search-icon" size={16} />
               <input
-                ref={searchInputRef}
                 type="text"
                 placeholder="Search..."
                 className="search-input"
                 value={searchQuery}
                 onChange={handleSearch}
-                onFocus={() => {
-                  setIsSearchFocused(true);
-                  if (searchQuery.trim()) setIsSearchVisible(true);
-                }}
+                onFocus={() => searchQuery.trim() && setIsSearchVisible(true)}
               />
-              <div className="search-shortcut">⌘K</div>
               {isSearchVisible && searchResults.length > 0 && (
                 <div className="search-results">
                   {searchResults.map((item, index) => (
