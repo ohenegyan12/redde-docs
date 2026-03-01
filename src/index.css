@@ -661,7 +661,7 @@ body {
 .mode-switch {
   display: flex;
   background-color: var(--search-bg);
-  border-radius: 8px;
+  border-radius: 9999px;
   padding: 4px;
   margin-bottom: 32px;
   border: 1px solid var(--border-color);
@@ -676,7 +676,7 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 9999px;
   transition: all 0.2s;
 }
 

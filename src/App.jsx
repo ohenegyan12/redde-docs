@@ -98,8 +98,8 @@ function App() {
     { title: 'Shopify Plugin', page: 'plugins', tab: 'sdks-plugins' },
     { title: 'Checkout Welcome', page: 'welcome-api', tab: 'checkout-docs' },
     { title: 'Checkout Instructions', page: 'instructions', tab: 'checkout-docs' },
-    { title: 'Debit Money API', page: 'debit-money', tab: 'checkout-docs' },
-    { title: 'Credit Money API', page: 'credit-money', tab: 'checkout-docs' },
+    { title: 'Debit and Credit API', page: 'debit-credit', tab: 'checkout-docs' },
+
     { title: 'Contact', page: 'contact', tab: 'introduction' },
     { title: 'FAQ', page: 'faq', tab: 'introduction' },
   ];
@@ -351,17 +351,10 @@ function App() {
                 <h4 className="sidebar-title">Customer APIs</h4>
                 <a
                   href="#"
-                  className={`sidebar-link ${activePage === 'debit-money' ? 'active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setActivePage('debit-money'); }}
+                  className={`sidebar-link ${activePage === 'debit-credit' ? 'active' : ''}`}
+                  onClick={(e) => { e.preventDefault(); setActivePage('debit-credit'); }}
                 >
-                  Debit Money
-                </a>
-                <a
-                  href="#"
-                  className={`sidebar-link ${activePage === 'credit-money' ? 'active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setActivePage('credit-money'); }}
-                >
-                  Credit Money
+                  Debit and Credit
                 </a>
               </div>
             </>
@@ -404,10 +397,8 @@ function App() {
 
               <div className="content-section">
                 <h2>Build Something Brilliant with Redde's API</h2>
-                <div className="content-section">
-                  <p>Redde is a system that allows merchants to receive payments for goods and services. You can use the <a href="https://app.reddeonline.com/login" target="_blank" rel="noopener noreferrer" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>Redde portal</a> to sweep your money into your bank account. Transactions via Redde happen online via a web browser or our Redde app available for iOS, Windows. And Android.</p>
-                  <p style={{ marginTop: '16px' }}>Redde provides a secure, easy and convenient method of making online payments for products and services.</p>
-                </div>
+                <p>Redde is a system that allows merchants to receive payments for goods and services. You can use the <a href="https://app.reddeonline.com/login" target="_blank" rel="noopener noreferrer" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>Redde portal</a> to sweep your money into your bank account. Transactions via Redde happen online via a web browser or our Redde app available for iOS, Windows. And Android.</p>
+                <p style={{ marginTop: '16px' }}>Redde provides a secure, easy and convenient method of making online payments for products and services.</p>
               </div>
 
               <div className="cards-grid">
@@ -635,7 +626,7 @@ function App() {
 
               <div className="content-section">
                 <h2 className="section-title">API Key</h2>
-                <p>Before you can have access to APIs you need to register and create an <a href="https://app.reddeonline.com/register" target="_blank" rel="noopener noreferrer" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>Account</a>. Header for all request should have <code>{`{"apikey": "string"}`}</code> and this API key will be sent to merchant when their app configuration is setup for them by Wigal.</p>
+                <p>Before you can have access to APIs you need to register and create an <a href="https://app.reddeonline.com/register" target="_blank" rel="noopener noreferrer" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>Account</a>. Header for all request should have <code style={{ color: '#E21B22', backgroundColor: 'transparent', padding: 0 }}>{`{"apikey": "string"}`}</code> and this API key will be sent to merchant when their app configuration is setup for them by Wigal.</p>
               </div>
 
               <div className="content-section">
@@ -652,7 +643,15 @@ function App() {
                 <h2 className="section-title">Supported Channels</h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
                   {['MTN', 'AIRTELTIGO', 'VODAFONE', 'MASTERCARD', 'VISA'].map(channel => (
-                    <span key={channel} style={{ backgroundColor: 'var(--search-bg)', padding: '6px 16px', borderRadius: '6px', fontSize: '13px', fontWeight: '600', border: '1px solid var(--border-color)' }}>
+                    <span key={channel} style={{
+                      backgroundColor: 'var(--search-bg)',
+                      padding: '6px 16px',
+                      borderRadius: '6px',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      border: '1px solid var(--border-color)',
+                      color: 'var(--text-primary)'
+                    }}>
                       {channel}
                     </span>
                   ))}
@@ -680,8 +679,27 @@ function App() {
                 </div>
               </div>
 
-              <div className="content-section" style={{ marginTop: '48px', paddingTop: '48px', borderTop: '1px solid var(--border-color)' }}>
-                <h2 className="section-title" style={{ fontSize: '24px' }}>Customer API (Checkout)</h2>
+              <div className="content-footer">
+                <a
+                  href="#"
+                  className="next-page-link"
+                  onClick={(e) => { e.preventDefault(); setActivePage('debit-credit'); }}
+                >
+                  Debit and Credit <ChevronRight size={14} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
+                </a>
+              </div>
+            </>
+          )}
+
+          {activeTab === 'checkout-docs' && activePage === 'debit-credit' && (
+            <>
+              <div className="content-header">
+                <span className="content-breadcrumb">Checkout Docs • {checkoutMode.toUpperCase()}</span>
+                <h1 className="content-title">Debit and Credit</h1>
+                <p className="content-subtitle">Collect funds from customers or send payouts.</p>
+              </div>
+              <div className="content-section">
+                <h2 className="section-title">Customer API (Checkout)</h2>
                 <p style={{ fontWeight: '500', marginBottom: '16px' }}>Initiate an online checkout by Merchant</p>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>Gather amount and description from client or customer on your site where you have implemented the Redde Checkout and set your site details</p>
 
@@ -719,52 +737,401 @@ function App() {
                     {copied === 'checkout-url' ? <Check size={16} /> : <Copy size={16} />}
                   </button>
                 </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Header data</h3>
+                  <div className="doc-table-wrapper">
+                    <table className="doc-table">
+                      <thead>
+                        <tr>
+                          <th>Field / Parameter</th>
+                          <th>Value</th>
+                          <th>Required</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Content-Type</td>
+                          <td>application/json;charset=UTF-8</td>
+                          <td>Yes</td>
+                          <td>this is needed to encode to UTF-8</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Payload description</h3>
+                  <div className="doc-table-wrapper">
+                    <table className="doc-table">
+                      <thead>
+                        <tr>
+                          <th>Field / Parameter</th>
+                          <th>Type</th>
+                          <th>Required</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>apikey</td>
+                          <td>string</td>
+                          <td>Yes</td>
+                          <td>will be given by wigal when the app is setup</td>
+                        </tr>
+                        <tr>
+                          <td>appid</td>
+                          <td>characters</td>
+                          <td>Yes</td>
+                          <td>will be given by wigal when the app is setup</td>
+                        </tr>
+                        <tr>
+                          <td>amount</td>
+                          <td>number</td>
+                          <td>Yes</td>
+                          <td>Amount of items purchased</td>
+                        </tr>
+                        <tr>
+                          <td>description</td>
+                          <td>string</td>
+                          <td>Yes</td>
+                          <td>Description of items purchased</td>
+                        </tr>
+                        <tr>
+                          <td>logolink</td>
+                          <td>url</td>
+                          <td>Yes</td>
+                          <td>Merchant's logo for displaying on checkout page</td>
+                        </tr>
+                        <tr>
+                          <td>merchatname</td>
+                          <td>string</td>
+                          <td>Yes</td>
+                          <td>Merchant's name for displaying on checkout page</td>
+                        </tr>
+                        <tr>
+                          <td>clienttransid</td>
+                          <td>string</td>
+                          <td>Yes</td>
+                          <td>Transaction id generated by Merchant to check client's payment transactions</td>
+                        </tr>
+                        <tr>
+                          <td>successcallback</td>
+                          <td>url</td>
+                          <td>Yes</td>
+                          <td>A callback url to redirect client when payment transaction has been successful</td>
+                        </tr>
+                        <tr>
+                          <td>failurecallback</td>
+                          <td>url</td>
+                          <td>Yes</td>
+                          <td>A callback url to redirect client when payment transaction has failed</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Sample Payload:</h3>
+                  <div style={{
+                    backgroundColor: '#1E1E1E',
+                    padding: '24px',
+                    borderRadius: '8px',
+                    fontFamily: 'monospace',
+                    fontSize: '14px',
+                    color: '#CFCFD5',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    position: 'relative'
+                  }}>
+                    <button
+                      onClick={() => handleCopy(`{
+  "amount": 10,
+  "apikey": "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "appid": XX,
+  "description": "Buying something from Merchant Name Limited",
+  "failurecallback": "https://www.example.com/failure",
+  "logolink": "http://example.com/logo.png",
+  "merchantname": "Merchant Name Limited",
+  "clienttransid": "102474",
+  "successcallback": "https://example.com/success"
+}`, 'sample-payload')}
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: '16px',
+                        background: 'none',
+                        border: 'none',
+                        color: copied === 'sample-payload' ? '#10B981' : '#888888',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        transition: 'color 0.2s'
+                      }}
+                      title="Copy Payload"
+                    >
+                      {copied === 'sample-payload' ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
+
+                    <div style={{ marginBottom: '8px', color: '#888888' }}>Payload:</div>
+                    <div style={{ lineHeight: '1.6' }}>
+                      <span style={{ color: '#ffffff' }}>{'{'}</span><br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"amount"</span>: <span style={{ color: '#c19ff0' }}>10</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"apikey"</span>: <span style={{ color: '#d1e189' }}>"XXXXXXXXXXXXXXXXXXXXXXXXXXXX"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"appid"</span>: <span style={{ color: '#c19ff0' }}>XX</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"description"</span>: <span style={{ color: '#d1e189' }}>"Buying something from Merchant Name Limited"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"failurecallback"</span>: <span style={{ color: '#d1e189' }}>"https://www.example.com/failure"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"logolink"</span>: <span style={{ color: '#d1e189' }}>"http://example.com/logo.png"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"merchantname"</span>: <span style={{ color: '#d1e189' }}>"Merchant Name Limited"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"clienttransid"</span>: <span style={{ color: '#d1e189' }}>"102474"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"successcallback"</span>: <span style={{ color: '#d1e189' }}>"https://example.com/success"</span><br />
+                      <span style={{ color: '#ffffff' }}>{'}'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Sample Response: Checkout Initiation</h3>
+                  <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
+                    After a successful initiation a checkout url will be given for transaction to be processed. Merchant will have to redirect client this url.
+                  </p>
+
+                  <div style={{
+                    backgroundColor: '#1E1E1E',
+                    padding: '24px',
+                    borderRadius: '8px',
+                    fontFamily: 'monospace',
+                    fontSize: '14px',
+                    color: '#CFCFD5',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    position: 'relative'
+                  }}>
+                    <button
+                      onClick={() => handleCopy(`// Response: Success Initiation
+{
+"status": "OK",
+"reason": "Checkout Initiation accepted",
+"referenceid": "102474",
+"responsetoken": "M7M9yLhyKa18q4JjAOisXmaZ+PaTu0TUouYDdXnSQq4=",
+"checkouturl": "https://checkout.reddeonline.com?token=M7M9yLhyKa18q4JjAOisXmaZ%2BPaTu0TUouYDdXnSQq4%3D",
+"checkouttransid": 54
+}
+
+// Response: Failure Initiation
+{
+"status": "FAILED",
+"reason": "APP ID: 1 cannot be found",
+"referenceid": null,
+"responsetoken": null,
+"checkouturl": null,
+"checkouttransid": null
+}`, 'initiation-response')}
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: '16px',
+                        background: 'none',
+                        border: 'none',
+                        color: copied === 'initiation-response' ? '#10B981' : '#888888',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        transition: 'color 0.2s'
+                      }}
+                      title="Copy Response"
+                    >
+                      {copied === 'initiation-response' ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
+
+                    <div style={{ marginBottom: '24px' }}>
+                      <div style={{ color: '#888888', marginBottom: '8px' }}>Response: Success Initiation</div>
+                      <div style={{ lineHeight: '1.6' }}>
+                        <span style={{ color: '#ffffff' }}>{'{'}</span><br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"status"</span>: <span style={{ color: '#d1e189' }}>"OK"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"reason"</span>: <span style={{ color: '#d1e189' }}>"Checkout Initiation accepted"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"referenceid"</span>: <span style={{ color: '#d1e189' }}>"102474"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"responsetoken"</span>: <span style={{ color: '#d1e189' }}>"M7M9yLhyKa18q4JjAOisXmaZ+PaTu0TUouYDdXnSQq4="</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"checkouturl"</span>: <span style={{ color: '#d1e189' }}>"https://checkout.reddeonline.com?token=M7M9yLhyKa18q4JjAOisXmaZ%2BPaTu0TUouYDdXnSQq4%3D"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"checkouttransid"</span>: <span style={{ color: '#c19ff0' }}>54</span><br />
+                        <span style={{ color: '#ffffff' }}>{'}'}</span>
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: '24px' }}>
+                      <div style={{ color: '#888888', marginBottom: '8px' }}>Response: Failure Initiation</div>
+                      <div style={{ lineHeight: '1.6' }}>
+                        <span style={{ color: '#ffffff' }}>{'{'}</span><br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"status"</span>: <span style={{ color: '#d1e189' }}>"FAILED"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"reason"</span>: <span style={{ color: '#d1e189' }}>"APP ID: 1 cannot be found"</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"referenceid"</span>: <span style={{ color: '#c19ff0' }}>null</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"responsetoken"</span>: <span style={{ color: '#c19ff0' }}>null</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"checkouturl"</span>: <span style={{ color: '#c19ff0' }}>null</span>,<br />
+                        &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"checkouttransid"</span>: <span style={{ color: '#c19ff0' }}>null</span><br />
+                        <span style={{ color: '#ffffff' }}>{'}'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="content-footer">
-                <a
-                  href="#"
-                  className="next-page-link"
-                  onClick={(e) => { e.preventDefault(); setActivePage('debit-money'); }}
-                >
-                  Debit Money <ChevronRight size={14} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
-                </a>
-              </div>
-            </>
-          )}
+              <div className="content-section" style={{ marginTop: '48px', paddingTop: '48px', borderTop: '1px solid var(--border-color)' }}>
+                <h2 className="section-title" style={{ fontSize: '24px' }}>Check status of checkout transaction with ID</h2>
 
-          {activeTab === 'checkout-docs' && activePage === 'debit-money' && (
-            <>
-              <div className="content-header">
-                <span className="content-breadcrumb">Checkout Docs • {checkoutMode.toUpperCase()}</span>
-                <h1 className="content-title">Debit Money</h1>
-                <p className="content-subtitle">API endpoint to collect funds from customers.</p>
-              </div>
-              <div className="content-section">
-                <p>Learn how to initiate a debit transaction via the Redde API.</p>
-              </div>
-              <div className="content-footer">
-                <a
-                  href="#"
-                  className="next-page-link"
-                  onClick={(e) => { e.preventDefault(); setActivePage('credit-money'); }}
-                >
-                  Credit Money <ChevronRight size={14} style={{ verticalAlign: 'middle', marginBottom: '2px' }} />
-                </a>
-              </div>
-            </>
-          )}
+                <p style={{ fontWeight: '700', fontSize: '14px', marginBottom: '12px' }}>
+                  Endpoint: <span style={{ color: '#22C55E' }}>GET</span>
+                </p>
 
-          {activeTab === 'checkout-docs' && activePage === 'credit-money' && (
-            <>
-              <div className="content-header">
-                <span className="content-breadcrumb">Checkout Docs • {checkoutMode.toUpperCase()}</span>
-                <h1 className="content-title">Credit Money</h1>
-                <p className="content-subtitle">API endpoint to send money to customers.</p>
+                <div style={{
+                  backgroundColor: '#1E1E1E',
+                  padding: '16px 24px',
+                  borderRadius: '8px',
+                  fontFamily: 'monospace',
+                  fontSize: '14px',
+                  color: '#CFCFD5',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span>https://demoapi.reddeonline.com/v1/checkoutstatus/{'{checkouttransid}'}</span>
+                  <button
+                    onClick={() => handleCopy('https://demoapi.reddeonline.com/v1/checkoutstatus/{checkouttransid}', 'status-url')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: copied === 'status-url' ? '#10B981' : '#888888',
+                      cursor: 'pointer',
+                      padding: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      transition: 'color 0.2s'
+                    }}
+                    title="Copy URL"
+                  >
+                    {copied === 'status-url' ? <Check size={16} /> : <Copy size={16} />}
+                  </button>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Header data</h3>
+                  <div className="doc-table-wrapper">
+                    <table className="doc-table">
+                      <thead>
+                        <tr>
+                          <th>Field / Parameter</th>
+                          <th>Value</th>
+                          <th>Required</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>apikey</td>
+                          <td>xxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+                          <td>Yes</td>
+                          <td>merchant api key given to you by wigal</td>
+                        </tr>
+                        <tr>
+                          <td>appid</td>
+                          <td>xx</td>
+                          <td>Yes</td>
+                          <td>merchant app id given to you by wigal</td>
+                        </tr>
+                        <tr>
+                          <td>Content-Type</td>
+                          <td>application/json;charset=UTF-8</td>
+                          <td>Yes</td>
+                          <td>this is needed to encode to UTF-8</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Url Parameter</h3>
+                  <div className="doc-table-wrapper">
+                    <table className="doc-table">
+                      <thead>
+                        <tr>
+                          <th>Field / Parameter</th>
+                          <th>Value</th>
+                          <th>Required</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>checkouttransid</td>
+                          <td>number</td>
+                          <td>Yes</td>
+                          <td>transaction id from checkout initiation</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '32px' }}>
+                  <h3 className="doc-table-title">Sample Response for checkout transaction status</h3>
+                  <div style={{
+                    backgroundColor: '#1E1E1E',
+                    padding: '24px',
+                    borderRadius: '8px',
+                    fontFamily: 'monospace',
+                    fontSize: '14px',
+                    color: '#CFCFD5',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    position: 'relative'
+                  }}>
+                    <button
+                      onClick={() => handleCopy(`{
+"status": "PAID",
+"reason": "Successfully processed transaction.",
+"transactionid": 414494,
+"clienttransid": "102486",
+"clientreference": "REDDE-CHECKOUT-72",
+"statusdate": "2019-05-15 12:02:13.732",
+"brandtransid": "5865016103"
+}`, 'status-response')}
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: '16px',
+                        background: 'none',
+                        border: 'none',
+                        color: copied === 'status-response' ? '#10B981' : '#888888',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        transition: 'color 0.2s'
+                      }}
+                      title="Copy Response"
+                    >
+                      {copied === 'status-response' ? <Check size={16} /> : <Copy size={16} />}
+                    </button>
+
+                    <div style={{ marginBottom: '8px', color: '#888888' }}>Response:</div>
+                    <div style={{ lineHeight: '1.6' }}>
+                      <span style={{ color: '#ffffff' }}>{'{'}</span><br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"status"</span>: <span style={{ color: '#d1e189' }}>"PAID"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"reason"</span>: <span style={{ color: '#d1e189' }}>"Successfully processed transaction."</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"transactionid"</span>: <span style={{ color: '#c19ff0' }}>414494</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"clienttransid"</span>: <span style={{ color: '#d1e189' }}>"102486"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"clientreference"</span>: <span style={{ color: '#d1e189' }}>"REDDE-CHECKOUT-72"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"statusdate"</span>: <span style={{ color: '#d1e189' }}>"2019-05-15 12:02:13.732"</span>,<br />
+                      &nbsp;&nbsp;<span style={{ color: '#ef438a' }}>"brandtransid"</span>: <span style={{ color: '#d1e189' }}>"5865016103"</span><br />
+                      <span style={{ color: '#ffffff' }}>{'}'}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="content-section">
-                <p>Learn how to initiate a payout or credit transaction via the Redde API.</p>
-              </div>
+
             </>
           )}
 
