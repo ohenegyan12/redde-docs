@@ -74,7 +74,7 @@ function App() {
   const [restMode, setRestMode] = useState('test'); // 'test' or 'live'
   const [activeLangTab, setActiveLangTab] = useState('cURL');
   const [openFaq, setOpenFaq] = useState(null);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [activeSection, setActiveSection] = useState('what-is-redde');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -720,22 +720,24 @@ IRestResponse response = client.Execute(request);`
 
           {activeTab === 'rest-api' && (
             <>
-              <div className="sidebar-section">
-                <div className="mode-switch">
-                  <button
-                    className={`mode-btn ${restMode === 'test' ? 'active' : ''}`}
-                    onClick={() => setRestMode('test')}
-                  >
-                    Test
-                  </button>
-                  <button
-                    className={`mode-btn ${restMode === 'live' ? 'active' : ''}`}
-                    onClick={() => setRestMode('live')}
-                  >
-                    Live
-                  </button>
+              {activePage !== 'contact' && activePage !== 'faq' && (
+                <div className="sidebar-section">
+                  <div className="mode-switch">
+                    <button
+                      className={`mode-btn ${restMode === 'test' ? 'active' : ''}`}
+                      onClick={() => setRestMode('test')}
+                    >
+                      Test
+                    </button>
+                    <button
+                      className={`mode-btn ${restMode === 'live' ? 'active' : ''}`}
+                      onClick={() => setRestMode('live')}
+                    >
+                      Live
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="sidebar-section">
                 <h4 className="sidebar-title">API Navigation</h4>
@@ -791,22 +793,24 @@ IRestResponse response = client.Execute(request);`
 
           {activeTab === 'checkout-docs' && (
             <>
-              <div className="sidebar-section">
-                <div className="mode-switch">
-                  <button
-                    className={`mode-btn ${checkoutMode === 'test' ? 'active' : ''}`}
-                    onClick={() => setCheckoutMode('test')}
-                  >
-                    Test
-                  </button>
-                  <button
-                    className={`mode-btn ${checkoutMode === 'live' ? 'active' : ''}`}
-                    onClick={() => setCheckoutMode('live')}
-                  >
-                    Live
-                  </button>
+              {activePage !== 'contact' && activePage !== 'faq' && (
+                <div className="sidebar-section">
+                  <div className="mode-switch">
+                    <button
+                      className={`mode-btn ${checkoutMode === 'test' ? 'active' : ''}`}
+                      onClick={() => setCheckoutMode('test')}
+                    >
+                      Test
+                    </button>
+                    <button
+                      className={`mode-btn ${checkoutMode === 'live' ? 'active' : ''}`}
+                      onClick={() => setCheckoutMode('live')}
+                    >
+                      Live
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="sidebar-section">
                 <h4 className="sidebar-title">API Navigation</h4>
@@ -2959,7 +2963,7 @@ IRestResponse response = client.Execute(request);`
                 <div className="feature-card">
                   <div className="card-icon"><Mail size={24} /></div>
                   <h3>Support</h3>
-                  <p>All general support inquiries</p>
+                  <p>All general support inquiries <a href="mailto:support@wigal.com.gh" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>support@wigal.com.gh</a></p>
                 </div>
               </div>
 
