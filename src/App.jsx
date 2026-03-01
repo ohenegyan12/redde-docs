@@ -917,22 +917,22 @@ IRestResponse response = client.Execute(request);`
               </div>
 
               <div className="cards-grid">
-                <div className="feature-card" onMouseMove={handleMouseMove}>
+                <div className="feature-card" onMouseMove={handleMouseMove} onClick={() => handleTabChange('sdks-plugins')}>
                   <div className="card-icon"><Code2 size={24} /></div>
-                  <h3>SDKs</h3>
-                  <p>Integrate Redde into your application using our official SDKs.</p>
+                  <h3>Plugins and SDKs</h3>
+                  <p>Integrate Redde into your application using our official SDKs and Plugins.</p>
                 </div>
-                <div className="feature-card" onMouseMove={handleMouseMove}>
+                <div className="feature-card" onMouseMove={handleMouseMove} onClick={() => handleTabChange('checkout-docs')}>
                   <div className="card-icon"><Workflow size={24} /></div>
-                  <h3>Checkout SDKs</h3>
-                  <p>Quickly set up a seamless checkout experience with our specialized SDKs.</p>
+                  <h3>Checkout Docs</h3>
+                  <p>Quickly set up a seamless checkout experience with our specialized documentation.</p>
                 </div>
-                <div className="feature-card" onMouseMove={handleMouseMove}>
+                <div className="feature-card" onMouseMove={handleMouseMove} onClick={() => handleTabChange('rest-api')}>
                   <div className="card-icon"><Wrench size={24} /></div>
                   <h3>Rest API Docs</h3>
                   <p>Comprehensive documentation for our RESTful endpoints.</p>
                 </div>
-                <div className="feature-card" onMouseMove={handleMouseMove}>
+                <div className="feature-card" onMouseMove={handleMouseMove} onClick={() => setActivePage('contact')}>
                   <div className="card-icon"><LifeBuoy size={24} /></div>
                   <h3>Support</h3>
                   <p>Need help? Check out our FAQs or contact support for assistance.</p>
