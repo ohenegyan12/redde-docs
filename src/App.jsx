@@ -1920,7 +1920,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section">
                 <h3 className="doc-table-title">Sample Payload:</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`{
   "amount": number,
@@ -1955,7 +1955,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section">
                 <h3 className="doc-table-title">Sample Response: First Response</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`{
   "status": "OK",
@@ -1984,7 +1984,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section">
                 <h3 className="doc-table-title">Sample Response: Intermidiary(Processing) Response - This is sent to the receive callback url</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`// Response: intermidiary
 {
@@ -2041,7 +2041,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section">
                 <h3 className="doc-table-title">Sample Response: Completed - This is sent to the receive callback url</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`// Response: completed
 {
@@ -2108,7 +2108,7 @@ IRestResponse response = client.Execute(request);`
                   border: '1px solid #000000',
                   borderRadius: '8px',
                   marginBottom: '16px',
-                  overflowX: 'auto',
+                  overflowX: 'auto', wordBreak: 'break-word',
                   backgroundColor: '#ffffff'
                 }}>
                   {['cURL', 'HTTP', 'PHP', 'JavaScript', 'Python', 'Ruby', 'Go', 'Swift', 'Java', 'C#'].map(lang => (
@@ -2134,7 +2134,7 @@ IRestResponse response = client.Execute(request);`
                   ))}
                 </div>
 
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(getLangCodeAndRender(activeLangTab, restMode).raw, 'rest-debit-lang')}
                     style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: copied === 'rest-debit-lang' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
@@ -2325,7 +2325,7 @@ IRestResponse response = client.Execute(request);`
 
                 <div style={{ marginTop: '48px' }}>
                   <h3 className="doc-table-title" style={{ fontWeight: '600', marginBottom: '16px' }}>Sample Payload:</h3>
-                  <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                  <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                     <button
                       onClick={() => handleCopy(`{
   "amount": number, (2 decimal places allowed)
@@ -2360,7 +2360,7 @@ IRestResponse response = client.Execute(request);`
 
                 <div style={{ marginTop: '48px' }}>
                   <h3 className="doc-table-title" style={{ fontWeight: '600', marginBottom: '16px' }}>Sample Response: First Response</h3>
-                  <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                  <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                     <button
                       onClick={() => handleCopy(`// Response: Initial
 {
@@ -2414,7 +2414,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section" style={{ marginTop: '48px' }}>
                 <h3 className="doc-table-title" style={{ fontWeight: '600', marginBottom: '16px' }}>Sample Response: Intermidiary(Processing) Response</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`// Response: intermidiary
 {
@@ -2471,7 +2471,7 @@ IRestResponse response = client.Execute(request);`
 
               <div className="content-section" style={{ marginTop: '48px' }}>
                 <h3 className="doc-table-title" style={{ fontWeight: '600', marginBottom: '16px' }}>Sample Response: Completed</h3>
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(`// Response: completed
 {
@@ -2538,7 +2538,7 @@ IRestResponse response = client.Execute(request);`
                   border: '1px solid #000000',
                   borderRadius: '8px',
                   marginBottom: '16px',
-                  overflowX: 'auto',
+                  overflowX: 'auto', wordBreak: 'break-word',
                   backgroundColor: '#ffffff'
                 }}>
                   {['cURL', 'HTTP', 'PHP', 'JavaScript', 'Python', 'Ruby', 'Go', 'Swift', 'Java', 'C#'].map(lang => (
@@ -2564,7 +2564,7 @@ IRestResponse response = client.Execute(request);`
                   ))}
                 </div>
 
-                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto' }}>
+                <div style={{ backgroundColor: '#1E1E1E', padding: '24px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#CFCFD5', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflowX: 'auto', wordBreak: 'break-word' }}>
                   <button
                     onClick={() => handleCopy(getLangCodeAndRender(activeLangTab, restMode, 'credit').raw, 'rest-credit-lang')}
                     style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: copied === 'rest-credit-lang' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
@@ -2725,7 +2725,7 @@ IRestResponse response = client.Execute(request);`
                   fontFamily: 'monospace',
                   fontSize: '14px',
                   color: '#CFCFD5',
-                  overflow: 'hidden',
+                  overflowX: 'auto', wordBreak: 'break-word',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                   marginTop: '16px'
                 }}>
@@ -2871,7 +2871,7 @@ IRestResponse response = client.Execute(request);`
                   fontFamily: 'monospace',
                   fontSize: '14px',
                   color: '#CFCFD5',
-                  overflow: 'hidden',
+                  overflowX: 'auto', wordBreak: 'break-word',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                   marginTop: '16px'
                 }}>
@@ -2928,7 +2928,7 @@ IRestResponse response = client.Execute(request);`
                   fontFamily: 'monospace',
                   fontSize: '14px',
                   color: '#CFCFD5',
-                  overflow: 'hidden',
+                  overflowX: 'auto', wordBreak: 'break-word',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                   marginTop: '16px'
                 }}>
