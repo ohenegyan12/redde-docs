@@ -1237,7 +1237,7 @@ IRestResponse response = client.Execute(request);`
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <span>{checkoutMode === 'live' ? 'https://api.reddeonline.com/v1/checkout/' : 'https://demoapi.reddeonline.com/v1/checkout/'}</span>
+                  <span style={{ wordBreak: 'break-all', marginRight: '16px' }}>{checkoutMode === 'live' ? 'https://api.reddeonline.com/v1/checkout/' : 'https://demoapi.reddeonline.com/v1/checkout/'}</span>
                   <button
                     onClick={() => handleCopy(checkoutMode === 'live' ? 'https://api.reddeonline.com/v1/checkout/' : 'https://demoapi.reddeonline.com/v1/checkout/', 'checkout-url')}
                     style={{
@@ -1811,7 +1811,7 @@ IRestResponse response = client.Execute(request);`
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <span>{restMode === 'live' ? 'https://api.reddeonline.com/v1/receive' : 'https://demoapi.reddeonline.com/v1/receive'}</span>
+                  <span style={{ wordBreak: 'break-all', marginRight: '16px' }}>{restMode === 'live' ? 'https://api.reddeonline.com/v1/receive' : 'https://demoapi.reddeonline.com/v1/receive'}</span>
                   <button
                     onClick={() => handleCopy(restMode === 'live' ? 'https://api.reddeonline.com/v1/receive' : 'https://demoapi.reddeonline.com/v1/receive', 'rest-debit-url')}
                     style={{ background: 'none', border: 'none', color: copied === 'rest-debit-url' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
@@ -2217,7 +2217,7 @@ IRestResponse response = client.Execute(request);`
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <span>{restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout'}</span>
+                  <span style={{ wordBreak: 'break-all', marginRight: '16px' }}>{restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout'}</span>
                   <button
                     onClick={() => handleCopy(restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout', 'rest-credit-url')}
                     style={{ background: 'none', border: 'none', color: copied === 'rest-credit-url' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
@@ -2645,7 +2645,7 @@ IRestResponse response = client.Execute(request);`
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <span>{restMode === 'live' ? 'https://api.reddeonline.com/v1/status/{transactionid}' : 'https://demoapi.reddeonline.com/v1/status/{transactionid}'}</span>
+                  <span style={{ wordBreak: 'break-all', marginRight: '16px' }}>{restMode === 'live' ? 'https://api.reddeonline.com/v1/status/{transactionid}' : 'https://demoapi.reddeonline.com/v1/status/{transactionid}'}</span>
                   <button
                     onClick={() => handleCopy(restMode === 'live' ? 'https://api.reddeonline.com/v1/status/{transactionid}' : 'https://demoapi.reddeonline.com/v1/status/{transactionid}', 'rest-status-url')}
                     style={{ background: 'none', border: 'none', color: copied === 'rest-status-url' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
@@ -2808,7 +2808,7 @@ IRestResponse response = client.Execute(request);`
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}>
-                  <span>{restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout'}</span>
+                  <span style={{ wordBreak: 'break-all', marginRight: '16px' }}>{restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout'}</span>
                   <button
                     onClick={() => handleCopy(restMode === 'live' ? 'https://api.reddeonline.com/v1/cashout' : 'https://demoapi.reddeonline.com/v1/cashout', 'rest-bank-url')}
                     style={{ background: 'none', border: 'none', color: copied === 'rest-bank-url' ? '#10B981' : '#888888', cursor: 'pointer', padding: '4px', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
