@@ -3,7 +3,7 @@ import './index.css';
 import {
   Search, Moon, Code2, Sun,
   Workflow, Wrench, LifeBuoy, Mail, ChevronLeft, ChevronRight, Play,
-  Copy, Check
+  Copy, Check, Menu, X
 } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -80,6 +80,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [copied, setCopied] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const scrollContainerRef = useRef(null);
   const searchRef = useRef(null);
 
@@ -156,6 +157,7 @@ function App() {
     if (tabId === 'sdks-plugins') setActivePage('sdks');
     if (tabId === 'checkout-docs') setActivePage('welcome-api');
     if (tabId === 'rest-api') setActivePage('rest-welcome');
+    setIsMobileMenuOpen(false);
   };
 
   // Helper for mouse tracking spotlight
@@ -602,13 +604,20 @@ IRestResponse response = client.Execute(request);`
   };
 
   return (
-    <div className={`app-container ${theme}-theme`}>
+    <div className={`app-container ${theme}-theme ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
       {/* Top Navigation */}
       <nav className="top-nav">
         <div className="nav-content">
           <div className="nav-top-row">
             {/* Logo and Version */}
             <div className="logo-section">
+              <button
+                className="mobile-menu-toggle"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle Menu"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
               <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                 <img src={theme === 'dark' ? "/logo.svg" : "/redde-logo-light.svg"} alt="Redde Logo" className="logo" />
               </a>
@@ -684,6 +693,13 @@ IRestResponse response = client.Execute(request);`
       <div className="main-layout">
         {/* Left Sidebar */}
         <aside className="left-sidebar">
+          <button
+            className="close-sidebar-btn"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close Sidebar"
+          >
+            <X size={20} />
+          </button>
           {activeTab === 'introduction' && (
             <div className="sidebar-section">
               <h4 className="sidebar-title">Introduction</h4>
@@ -892,7 +908,6 @@ IRestResponse response = client.Execute(request);`
               </div>
 
               <div className="content-section">
-                <h2>Build Something Brilliant with Redde's API</h2>
                 <p>Redde is a system that allows merchants to receive payments for goods and services. You can use the <a href="https://app.reddeonline.com/login" target="_blank" rel="noopener noreferrer" style={{ color: '#E21B22', textDecoration: 'none', fontWeight: '600' }}>Redde portal</a> to sweep your money into your bank account. Transactions via Redde happen online via a web browser or our Redde app available for iOS, Windows. And Android.</p>
                 <p style={{ marginTop: '16px' }}>Redde provides a secure, easy and convenient method of making online payments for products and services.</p>
               </div>
