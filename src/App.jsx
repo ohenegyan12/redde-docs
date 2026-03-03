@@ -74,7 +74,11 @@ function App() {
   const [restMode, setRestMode] = useState('test'); // 'test' or 'live'
   const [activeLangTab, setActiveLangTab] = useState('cURL');
   const [openFaq, setOpenFaq] = useState(null);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'light';
+    const savedTheme = window.localStorage.getItem('theme');
+    return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light';
+  });
   const [activeSection, setActiveSection] = useState('what-is-redde');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -83,6 +87,11 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const scrollContainerRef = useRef(null);
   const searchRef = useRef(null);
+
+  // Persist theme changes
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
@@ -895,7 +904,17 @@ IRestResponse response = client.Execute(request);`
                       Whether you're building a startup, scaling a platform, or optimizing your checkout flow,
                       Redde gives you the tools to accept payments effortlessly.
                     </p>
-                    <button className="banner-btn">Get Started</button>
+                    <button
+                      className="banner-btn"
+                      onClick={() => {
+                        const el = document.getElementById('explore-the-docs');
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                    >
+                      Get Started
+                    </button>
                   </div>
                   <div className="banner-right">
                     <img
